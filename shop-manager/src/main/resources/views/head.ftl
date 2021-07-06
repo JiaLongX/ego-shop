@@ -35,3 +35,5 @@
 <script type="text/javascript" src="${ctx}/js/fileinput.js"></script>
 <!-- 对中文的支持 -->
 <script type="text/javascript" src="${ctx}/js/fileinput_locale_zh.js"></script>
+<!-- 引入doT.js -->
+<script type="text/javascript" src="${ctx}/js/doT.min.js"></script>

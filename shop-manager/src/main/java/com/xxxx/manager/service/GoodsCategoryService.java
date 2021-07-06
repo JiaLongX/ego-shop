@@ -15,4 +15,6 @@ public interface GoodsCategoryService {
 
 
     BaseResult addOne(GoodsCategory goodsCategory);
+
+    List<GoodsCategory> queryAll();
 }

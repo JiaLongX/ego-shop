@@ -18,8 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -77,6 +75,10 @@ public class GoodsController {
 
     @RequestMapping("list")
     public String queryAll(Model model){
+        List<GoodsCategory> goodsCategories=goodsCategoryService.queryAll();
+        List<Brand> brands = brandService.queryAllBrand();
+        model.addAttribute("gcList", goodsCategories);
+        model.addAttribute("brandList", brands);
         return "goods/goods-list";
     }
 
@@ -113,5 +115,20 @@ public class GoodsController {
         }
         return BaseResult.error();
     }
+
+    /**
+     * 商品-列表-分页查询
+     * @param goods
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping("listForPage")
+    @ResponseBody
+    public BaseResult selectGoodsListByPage(Goods goods,Integer pageNum,Integer pageSize){
+        return goodsService.selectGoodsListByPage(goods,pageNum,pageSize);
+    }
+
+
 
 }

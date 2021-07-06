@@ -1,15 +1,19 @@
 package com.xxxx.manager.service.impl;
 
 
-
 import com.xxxx.common.result.BaseResult;
+import com.xxxx.common.utils.JsonUtil;
 import com.xxxx.manager.mapper.GoodsCategoryMapper;
 import com.xxxx.manager.pojo.GoodsCategory;
 import com.xxxx.manager.pojo.GoodsCategoryExample;
 import com.xxxx.manager.pojo.vo.GoodsCategoryVo;
 import com.xxxx.manager.service.GoodsCategoryService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -20,6 +24,12 @@ public class GoodsCategoryServiceImpl implements GoodsCategoryService {
 
     @Resource
     private GoodsCategoryMapper goodsCategoryMapper;
+
+    @Resource
+    private RedisTemplate redisTemplate;
+
+    @Value("${goods.category.list.key}")
+    private String goodsCategoryListKey;
 
     @Override
     public List<GoodsCategory> queryListById(Short parentId) {
@@ -32,6 +42,11 @@ public class GoodsCategoryServiceImpl implements GoodsCategoryService {
 
     @Override
     public List<GoodsCategoryVo> quertAll() {
+        ValueOperations valueOperations = redisTemplate.opsForValue();
+        Object o = valueOperations.get(goodsCategoryListKey);
+        if (o!=null){
+            return JsonUtil.jsonToList((String) o,GoodsCategoryVo.class);
+        }
         GoodsCategoryExample example = new GoodsCategoryExample();
         example.createCriteria().andParentIdEqualTo((short) 0);
         List<GoodsCategory> list = goodsCategoryMapper.selectByExample(example);
@@ -61,12 +76,19 @@ public class GoodsCategoryServiceImpl implements GoodsCategoryService {
             goodsCategoryVo.setChildren(voList1);
             voList.add(goodsCategoryVo);
         }
+        valueOperations.set(goodsCategoryListKey,JsonUtil.object2JsonStr(voList));
         return voList;
     }
 
     @Override
     public BaseResult addOne(GoodsCategory goodsCategory) {
+        redisTemplate.delete(redisTemplate.keys("goods*"));
         return goodsCategoryMapper.insertSelective(goodsCategory)>0?BaseResult.success():BaseResult.error();
+    }
+
+    @Override
+    public List<GoodsCategory> queryAll() {
+        return goodsCategoryMapper.selectByExample(new GoodsCategoryExample());
     }
 
 
