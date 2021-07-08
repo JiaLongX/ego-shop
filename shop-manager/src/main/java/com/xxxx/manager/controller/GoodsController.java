@@ -2,16 +2,14 @@ package com.xxxx.manager.controller;
 
 import com.xxxx.common.result.BaseResult;
 import com.xxxx.common.result.FileResult;
-import com.xxxx.manager.pojo.Brand;
-import com.xxxx.manager.pojo.Goods;
-import com.xxxx.manager.pojo.GoodsCategory;
-import com.xxxx.manager.pojo.GoodsImages;
+import com.xxxx.manager.pojo.*;
 import com.xxxx.manager.pojo.vo.GoodsCategoryVo;
 import com.xxxx.manager.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,6 +36,9 @@ public class GoodsController {
 
     @Resource
     private GoodsImagesService goodsImagesService;
+
+    @Resource
+    private GoodsTypeService goodsTypeService;
 
     /**
      * 商品分类-添加-页面跳转
@@ -129,6 +130,33 @@ public class GoodsController {
         return goodsService.selectGoodsListByPage(goods,pageNum,pageSize);
     }
 
+    @RequestMapping("type/list")
+    public String toTypeList(Model model){
+        List<GoodsType> list=goodsTypeService.queryAll();
+        model.addAttribute("gtList",list);
+        return "goods/type/type-list";
+    }
 
+    @RequestMapping("type/add")
+    public String addTypeList(){
+        return "goods/type/type-add";
+    }
 
+    @RequestMapping("type/query")
+    @ResponseBody
+    public List<GoodsType> queryTypeList(){
+        return goodsTypeService.queryAll();
+    }
+
+    @RequestMapping("type/save")
+    @ResponseBody
+    public BaseResult addType(GoodsType goodsType){
+        return goodsTypeService.addType(goodsType);
+    }
+
+    @RequestMapping("type/del/{id}")
+    @ResponseBody
+    public BaseResult addType(@PathVariable Short id){
+        return goodsTypeService.delType(id);
+    }
 }

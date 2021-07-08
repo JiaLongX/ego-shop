@@ -11,6 +11,8 @@
         <module>shop-common</module>
         <module>shop-manager</module>
         <module>shop-generator</module>
+        <module>shop-portal</module>
+        <module>shop-rpc</module>
     </modules>
     <groupId>com.example</groupId>
     <artifactId>ego-shop</artifactId>
@@ -31,6 +33,11 @@
         <druid.version>1.1.20</druid.version>
         <!-- 七牛云sdk 依赖-->
         <qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
+        <!--dubbo 依赖-->
+        <dubbo.version>2.0.0</dubbo.version>
+        <!--zookeeper依赖-->
+        <zookeeper.version>0.11</zookeeper.version>
+        <elasticsearch.version>7.4.2</elasticsearch.version>
     </properties>
 
     <!-- 项目依赖管理 父项目只是声明依赖，子项目需要写明需要的依赖(可以省略版本信息) -->
@@ -66,6 +73,37 @@
                 <artifactId>qiniu-java-sdk</artifactId>
                 <version>${qiniu.version}</version>
             </dependency>
+            <!-- dubbo依赖 -->
+            <dependency>
+                <groupId>com.alibaba.spring.boot</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <!--zkClient依赖-->
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>${zookeeper.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-high-level-client -->
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-high-level-client</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch -->
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-client -->
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-client</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 </project>
