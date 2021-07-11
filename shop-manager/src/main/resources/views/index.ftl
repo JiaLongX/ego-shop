@@ -14,7 +14,7 @@
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b></b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><img src="${ctx}/images/ego_logo.png" width="40" height="30">&nbsp;&nbsp;<b>ego</b></span>
+        <span class="logo-lg"><img src="${ctx}/static/images/ego_logo.png" width="40" height="30">&nbsp;&nbsp;<b>ego</b></span>
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top" role="navigation">
@@ -23,32 +23,33 @@
           <span class="sr-only">Toggle navigation</span>
         </a>
         <!--服务器升级-->
-        <textarea id="textarea_upgrade" style="display:none;"></textarea>                              
+        <textarea id="textarea_upgrade" style="display:none;"></textarea>
         <div class="navbar-custom-menu">
-          <ul class="nav navbar-nav">
-           <li class="dropdown user user-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <!--  <img src="${ctx}/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
-                <i class="glyphicon glyphicon-user"></i>
-                <span class="hidden-xs">欢迎：admin</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="user-footer">
-                  <div class="pull-left">
-                  	<a href="/index/Admin/Index/index" data-url="" class="btn btn-default btn-flat model-map">后台首页</a>
-                   	<a href="修改密码.html" target="rightContent" class="btn btn-default btn-flat">修改密码</a>
-                   	<a href="/index/Admin/Admin/logout" class="btn btn-default btn-flat">安全退出</a>
-                  </div>
-                </li>
-              </ul>
-            </li>
-			<li><a href="">安全退出</a></li>
-            <!-- Control Sidebar Toggle Button -->
-            <li><a href="#" data-toggle="control-sidebar"><i class="fa fa-street-view"></i>换肤</a></li>
-          </ul>
+			<ul class="nav navbar-nav">
+				<li class="dropdown user user-menu">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<!--  <img src="${ctx}/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
+						<i class="glyphicon glyphicon-user"></i>
+						<span class="hidden-xs">欢迎：${user.userName}</span>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="user-footer">
+							<div class="pull-left">
+								<a href="/index/Admin/Index/index" data-url=""
+								   class="btn btn-default btn-flat model-map">后台首页</a>
+								<a href="修改密码.html" target="rightContent" class="btn btn-default btn-flat">修改密码</a>
+								<a href="/index/Admin/Admin/logout" class="btn btn-default btn-flat">安全退出</a>
+							</div>
+						</li>
+					</ul>
+				</li>
+				<li><a href="${ctx}/user/logout">安全退出</a></li>
+				<!-- Control Sidebar Toggle Button -->
+				<li><a href="#" data-toggle="control-sidebar"><i class="fa fa-street-view"></i>换肤</a></li>
+			</ul>
         </div>
      </nav>
-</header> 
+</header>
 
 <aside class="main-sidebar" style="overflow-y:auto;">
       <section class="sidebar">
@@ -62,7 +63,7 @@
           </div>
         <input type="hidden" name="__hash__" value="40390ff8c1de6e5b5f80bd80d3196959_8f39a041787ac9854b174964cdc80849" /></form>
         <!-- /.search form -->
-        <ul class="sidebar-menu"> 
+        <ul class="sidebar-menu">
 	      <li class="treeview">
         	    <a href="javascript:void(0)">
 	              <i class="fa fa-cog"></i><span>系统设置</span><i class="fa fa-angle-left pull-right"></i>
@@ -270,7 +271,7 @@
 	            	</li><li onclick="makecss(this)" data-id="add_Pickup">
 	            		<a href='自提点管理/添加自提点.html' target='rightContent'><i class="fa fa-circle-o"></i>添加自提点</a>
 	            	</li>	            </ul>
-        	</li>     
+        	</li>
         </ul>
       </section>
 </aside>
@@ -303,12 +304,12 @@
    <div class="control-sidebar-bg"></div>
 </div>
 
-<script src="${ctx}/js/jquery-ui.min.js" type="text/javascript"></script>
-<script src="${ctx}/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="${ctx}/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-<script src="${ctx}/plugins/fastclick/fastclick.min.js" type="text/javascript"></script>
-<script src="${ctx}/dist/js/app.js" type="text/javascript"></script>
-<script src="${ctx}/dist/js/demo.js" type="text/javascript"></script>
+<script src="${ctx}/static/js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/plugins/fastclick/fastclick.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/dist/js/app.js" type="text/javascript"></script>
+<script src="${ctx}/static/dist/js/demo.js" type="text/javascript"></script>
  
 <script type="text/javascript">
 $(document).ready(function(){

@@ -71,6 +71,23 @@ spring:
         max-wait: 10000ms                   # 最大连接阻塞等待时间，单位毫秒，默认 -1
         max-idle: 200                       # 最大空闲连接，默认 8
         min-idle: 5                          # 最小空闲连接，默认 0
+  # Dubbo
+  dubbo:
+    #开启dubbo服务
+    server: true
+    # 提供方应用信息，用于计算依赖关系
+    application:
+      name: rpc-consumer
+    # 使用 zookeeper 注册中心暴露服务地址
+    registry:
+      address: zookeeper://1.1.1.100:2181
+    # 用 dubbo 协议在 20880 端口暴露服务
+    protocol:
+      name: dubbo
+      port: 20881
+    # 扫描需要暴露的服务接口包
+    scan:
+      base-packages: com.xxxx.manager
   # Redis Key
   # 商品分类列表 Key
 goods.category.list.key: goods:category:list:goodsCategoryList
@@ -84,3 +101,6 @@ mybatis:
 logging:
   level:
     com.xxxx.manager.mapper: debug
+# Redis Key
+#用户票据key
+user.ticket: user:userTicket

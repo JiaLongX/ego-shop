@@ -19,4 +19,11 @@ public interface SSOService {
     * @return
     */
    Admin validate(String ticket);
+
+   /**
+    * 用户退出
+    * @param ticket
+    * @return
+    */
+   void logout(String ticket);
 }

@@ -47,14 +47,11 @@ spring:
       port: 20881
     # 扫描需要暴露的服务接口包
     scan:
-      base-packages: com.xxxx.rpc.service
-  elasticsearch:
-    rest:
-      uris: 1.1.1.100:9200
+      base-packages: com.xxxx.sso.service
 # MyBatis
 mybatis:
   # 配置 MyBatis数据返回类型别名(默认别名是类名)
-  type-aliases-package: com.xxxx.rpc.pojo
+  type-aliases-package: com.xxxx.sso.pojo
   # 配置 MyBatis Mapper 映射文件
   mapper-locations: classpath:mapper/*.xml
 # Mybatis SQL 打印(方法接口所在的包，不是 Mapper.xml 所在的包)
