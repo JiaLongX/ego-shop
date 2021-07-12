@@ -2,6 +2,7 @@ package com.xxxx.manager.controller;
 
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.xxxx.common.enums.BaseResultEnum;
 import com.xxxx.common.result.BaseResult;
 import com.xxxx.manager.service.CookieService;
 import com.xxxx.sso.pojo.Admin;
@@ -32,28 +33,38 @@ public class UserController {
     private CookieService cookieService;
 
     /**
-     * 用户登录
+     * 登录
      *
      * @param admin
      * @param request
      * @param response
      * @return
      */
-    @RequestMapping("/login")
+    @RequestMapping("login")
     @ResponseBody
-    public BaseResult login(Admin admin, HttpServletRequest request, HttpServletResponse response) {
-        // 登录并生成票据
-        String ticket = ssoService.login(admin);
+    public BaseResult login(Admin admin, HttpServletRequest request, HttpServletResponse response, String verify) {
+        //获取验证码
+        String capText = (String) request.getSession().getAttribute("pictureVerifyKey");
+        BaseResult baseResult = new BaseResult();
+        //验证码是否一致，不一致返回提示信息
+        if (StringUtils.isEmpty(verify.trim()) || !verify.trim().equals(capText)) {
+            baseResult.setCode(BaseResultEnum.PASS_ERROR_03.getCode());
+            baseResult.setMessage(BaseResultEnum.PASS_ERROR_03.getMessage());
+            return baseResult;
+        }
 
+        //登录并生成票据
+        String ticket = ssoService.login(admin);
+        //如果票据生成成功,将票据写入cookie
         if (!StringUtils.isEmpty(ticket)) {
-            // 如果票据生成成功，将票据写入cookie
             boolean result = cookieService.setCookie(request, response, ticket);
-            // 将用户信息，添加至session中，用于页面返显
+            //将用户信息添加至session中，用于页面返显
             request.getSession().setAttribute("user", admin);
             return result ? BaseResult.success() : BaseResult.error();
         }
-
-        return BaseResult.error();
+        baseResult.setCode(BaseResultEnum.PASS_ERROR_04.getCode());
+        baseResult.setMessage(BaseResultEnum.PASS_ERROR_04.getMessage());
+        return baseResult;
     }
 
     /**

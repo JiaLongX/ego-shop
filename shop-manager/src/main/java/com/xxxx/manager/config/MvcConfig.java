@@ -42,10 +42,11 @@ public class MvcConfig implements WebMvcConfigurer {
    @Override
    public void addInterceptors(InterceptorRegistry registry) {
       registry.addInterceptor(managerLoginInterceptor)
-            .addPathPatterns("/**")
-            .excludePathPatterns("/static/**")
-            .excludePathPatterns("/login/**")
-            .excludePathPatterns("/user/login/**")
-            .excludePathPatterns("/user/logout/**");
+              .addPathPatterns("/**")
+              .excludePathPatterns("/static/**")
+              .excludePathPatterns("/login/**")
+              .excludePathPatterns("/image/**")
+              .excludePathPatterns("/user/login/**")
+              .excludePathPatterns("/user/logout/**");
    }
 }

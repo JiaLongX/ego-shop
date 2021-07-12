@@ -16,7 +16,7 @@ public class SearchController {
     @Reference(interfaceClass = SearchService.class)
     private SearchService searchService;
 
-    @RequestMapping("tosearch")
+    @RequestMapping("index")
     public String toSearch(String searchStr,Model model){
         model.addAttribute("searchStr",searchStr);
         return "search/doSearch";

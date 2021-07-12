@@ -46,7 +46,7 @@ spring:
       port: 20880
     # 扫描需要暴露的服务接口包
     scan:
-      base-packages: com.xxxx.rpc.service
+      base-packages: com.xxxx.rpc
   elasticsearch:
     rest:
       uris: 1.1.1.100:9200
@@ -63,3 +63,5 @@ logging:
 # Redis Key
 # 商品分类列表 Key
 goods.category.list.key: goods:category:list:goodsCategoryList
+#用户购物车key
+user.cart: userCart

@@ -99,3 +99,15 @@ mybatis:
 logging:
   level:
     com.xxxx.manager.mapper: debug
+
+#关闭Elasticsearch健康检查
+management:
+  health:
+    elasticsearch:
+      enabled: false
+
+#用户票据key
+user.ticket: user:userTicket
+
+# shop-order系统url
+shop.order.url: http://localhost:9092/shop-order/
