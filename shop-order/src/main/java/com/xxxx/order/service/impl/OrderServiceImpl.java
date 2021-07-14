@@ -54,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
                     int row=orderGoodsMapper.insertMore(orderGoodsList);
                     if (row>0){
                         baseResult=BaseResult.success();
-                        baseResult.setMessage(String.valueOf(order.getOrderId()));
+                        baseResult.setMessage(String.valueOf(order.getOrderSn()));
                     }
                 }
             }

@@ -122,7 +122,7 @@
                 <div id="s_search">
                     <form id="s_search_form">
                         <input type="hidden" id="pageNum" name="pageNum" value="1"/>
-                        <input type="hidden" id="pageSize" name="pageSize" value="10"/>
+                        <input type="hidden" id="pageSize" name="pageSize" value="12"/>
                         <input name="searchStr" value="${searchStr}" type="text" class="search-input"/>
                         <input type="image"
                                src="${ctx}/static/images/btn_search.jpg"/>
@@ -2124,7 +2124,7 @@
     <li>
         <a href="#"><img src="{{=it[i].originalImg}}" width="170" height="160" alt=""/></a>
         <dl>
-            <dt><a href="#">{{=it[i].goodsNameHl}}</a></dt>
+            <dt><a href="#">{{=it[i].goodsNameH1}}</a></dt>
             <dd>特价：<strong class="red">￥{{=it[i].marketPrice}}</strong></dd>
             <dd><span class="startotal"></span></dd>
             <dd><a class="addcat" href="javascript:void(0);"
@@ -2215,7 +2215,7 @@
             data: $("#s_search_form").serialize(),
             dataType: "JSON",
             success: function (result) {
-                // console.log(result);
+                 console.log(result);
                 // 调用模板
                 var templ = doT.template($("#goodsTemplate").text());
                 // 填充内容

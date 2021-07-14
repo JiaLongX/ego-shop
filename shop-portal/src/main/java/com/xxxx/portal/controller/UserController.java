@@ -2,6 +2,11 @@ package com.xxxx.portal.controller;
 
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.tencentcloudapi.common.Credential;
+import com.tencentcloudapi.common.exception.TencentCloudSDKException;
+import com.tencentcloudapi.cvm.v20170312.CvmClient;
+import com.tencentcloudapi.cvm.v20170312.models.DescribeInstancesRequest;
+import com.tencentcloudapi.cvm.v20170312.models.DescribeInstancesResponse;
 import com.xxxx.common.result.BaseResult;
 import com.xxxx.portal.service.CookieService;
 import com.xxxx.sso.pojo.Admin;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 
 /**
  * @see(功能介绍) : 用户Controller
@@ -72,5 +78,31 @@ public class UserController {
         //清除cookie
         cookieService.deleteCookie(request,response);
         return "login";
+    }
+
+    @RequestMapping("toRegister")
+    public String toRegister(){
+        return "register";
+    }
+
+    @RequestMapping("register")
+    @ResponseBody
+    public BaseResult register(Admin admin){
+        return  ssoService.addUser(admin);
+    }
+
+    @RequestMapping("test")
+    @ResponseBody
+    public String test(HttpServletRequest request, HttpServletResponse response) throws TencentCloudSDKException {
+        String ticket = request.getParameter("ticket");
+        String randstr = request.getParameter("randstr");
+        Credential cred = new Credential("AKIDSjCOJyMULwHMlzyhBPP9dqmSs1uXtynO", "MTKvHMBiyxf6HBo9LK4cuvgAOM4WhcHg");
+        CvmClient client = new CvmClient(cred, "ap-shanghai");
+        DescribeInstancesRequest req = new DescribeInstancesRequest();
+        DescribeInstancesResponse resp = client.DescribeInstances(req);
+        System.out.println(DescribeInstancesResponse.toJsonString(resp));
+        System.out.println(ticket);
+        System.out.println(randstr);
+        return "ok";
     }
 }

@@ -1,6 +1,7 @@
 package com.xxxx.sso.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.xxxx.common.result.BaseResult;
 import com.xxxx.common.utils.JsonUtil;
 import com.xxxx.common.utils.Md5Util;
 import com.xxxx.common.utils.UUIDUtil;
@@ -81,4 +82,11 @@ public class SSOServiceImpl implements SSOService {
    public void logout(String ticket) {
       redisTemplate.delete(userTicket+":"+ticket);
    }
+
+   @Override
+   public BaseResult addUser(Admin admin) {
+
+      return adminMapper.addUser(admin.getUserName(),admin.getPassword())>0?BaseResult.success():BaseResult.error();
+   }
+
 }

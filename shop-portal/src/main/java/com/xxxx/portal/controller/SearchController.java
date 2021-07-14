@@ -1,7 +1,7 @@
 package com.xxxx.portal.controller;
 
+
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.github.pagehelper.PageInfo;
 import com.xxxx.common.result.ShopPageInfo;
 import com.xxxx.rpc.pojo.GoodsVo;
 import com.xxxx.rpc.service.SearchService;
@@ -17,7 +17,7 @@ public class SearchController {
     private SearchService searchService;
 
     @RequestMapping("index")
-    public String toSearch(String searchStr,Model model){
+    public String toSearch(String searchStr, Model model){
         model.addAttribute("searchStr",searchStr);
         return "search/doSearch";
     }

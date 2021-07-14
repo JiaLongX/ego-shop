@@ -235,7 +235,10 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xxxx.sso.pojo.AdminExample" resultType="java.lang.Long">
+    <insert id="addUser">
+      insert into t_admin (user_name,password) values (#{name},#{pwd})
+    </insert>
+    <select id="countByExample" parameterType="com.xxxx.sso.pojo.AdminExample" resultType="java.lang.Long">
     select count(*) from t_admin
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

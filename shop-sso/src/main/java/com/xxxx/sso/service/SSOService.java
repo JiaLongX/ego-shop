@@ -1,5 +1,6 @@
 package com.xxxx.sso.service;
 
+import com.xxxx.common.result.BaseResult;
 import com.xxxx.sso.pojo.Admin;
 
 /**
@@ -26,4 +27,6 @@ public interface SSOService {
     * @return
     */
    void logout(String ticket);
+
+    BaseResult addUser(Admin admin);
 }

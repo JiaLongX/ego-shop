@@ -1,5 +1,6 @@
 package com.xxxx.sso.mapper;
 
+import com.xxxx.common.result.BaseResult;
 import com.xxxx.sso.pojo.Admin;
 import com.xxxx.sso.pojo.AdminExample;
 import com.xxxx.sso.pojo.AdminWithBLOBs;
@@ -35,4 +36,7 @@ public interface AdminMapper {
     int updateByPrimaryKeyWithBLOBs(AdminWithBLOBs record);
 
     int updateByPrimaryKey(Admin record);
+
+    int addUser(@Param("name") String userName,@Param("pwd") String password);
+
 }
