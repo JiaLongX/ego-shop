@@ -96,7 +96,7 @@ public class UserController {
     public String test(HttpServletRequest request, HttpServletResponse response) throws TencentCloudSDKException {
         String ticket = request.getParameter("ticket");
         String randstr = request.getParameter("randstr");
-        Credential cred = new Credential("AKIDSjCOJyMULwHMlzyhBPP9dqmSs1uXtynO", "MTKvHMBiyxf6HBo9LK4cuvgAOM4WhcHg");
+        Credential cred = new Credential("xxxxx", "xxxxx");
         CvmClient client = new CvmClient(cred, "ap-shanghai");
         DescribeInstancesRequest req = new DescribeInstancesRequest();
         DescribeInstancesResponse resp = client.DescribeInstances(req);
